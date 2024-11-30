@@ -1,12 +1,15 @@
+/* General Styles */
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Inter', Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f4f4f4;
+  background-color: #f8f9fa; /* Light, modern background */
+  color: #212529; /* Neutral text color for accessibility */
   height: 100vh;
   overflow: hidden;
 }
 
+/* Main Editor Container */
 .editor {
   display: flex;
   flex-direction: column;
@@ -15,71 +18,137 @@ body {
   box-sizing: border-box;
 }
 
+/* Toolbar Styles */
 .toolbar {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
-  gap: 10px;
-  padding: 10px;
-  background-color: #333;
-  color: #fff;
+  align-items: center;
+  gap: 15px;
+  padding: 10px 20px;
+  background-color: #222; /* Sleek, modern toolbar */
+  color: #ffffff;
+  border-bottom: 2px solid #444; /* Adds a subtle separator */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .toolbar button {
-  padding: 8px 12px;
-  background-color: #555;
+  padding: 10px 15px;
+  background-color: #0069d9; /* Modern blue button */
   border: none;
   color: #fff;
   cursor: pointer;
-  border-radius: 4px;
-  font-weight: bold;
-  flex: 0 1 auto;
+  border-radius: 5px;
+  font-weight: 600;
+  transition: background-color 0.2s, transform 0.1s;
 }
 
 .toolbar button:hover {
-  background-color: #777;
+  background-color: #0056b3;
+  transform: scale(1.05); /* Subtle animation on hover */
+}
+
+.toolbar button:active {
+  background-color: #004494;
+  transform: scale(1); /* Reset scaling when clicked */
+}
+
+.toolbar input,
+.toolbar select {
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  color: #333;
+  font-size: 14px;
+  flex: 0 1 auto;
+}
+
+.toolbar input:focus,
+.toolbar select:focus {
+  border-color: #0069d9; /* Highlight on focus */
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 105, 217, 0.5);
 }
 
 .toolbar input:disabled,
 .toolbar select:disabled {
-  background-color: #ccc;
-  color: #777;
+  background-color: #e9ecef;
+  color: #adb5bd;
   cursor: not-allowed;
+  border-color: #ccc;
 }
 
+/* Canvas Styles */
 .canvas {
   flex-grow: 1;
   position: relative;
-  background-color: #fff;
+  background-color: #fefefe;
   overflow: auto;
   width: 100%;
   height: 100%;
-  border: 1px solid #ccc;
+  border: 2px solid #e9ecef;
   box-sizing: border-box;
+  border-radius: 5px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 10px;
 }
 
+/* Text Element Styles */
 .text-element {
+  position: absolute;
   cursor: move;
-  outline: black;
+  outline: none;
   user-select: none;
-  background: rgba(255, 255, 255, 0.9);
-  padding: 2px;
-  border: 1px dashed #ddd;
-  min-width: 150px; /* Minimum width */
-  min-height: 30px; /* Minimum height */
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  resize: both; /* Enable resizing */
-  overflow: auto; /* Ensure scrolling if content overflows */
-  transition: transform 0.2s ease;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 5px 10px;
+  border: 1px solid #ced4da;
+  min-width: 150px;
+  min-height: 30px;
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  resize: both;
+  overflow: auto;
+  font-size: 16px;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
 }
 
 .text-element:hover {
-  transform: scale(1.05);
-  border-color: #999;
+  transform: scale(1.05); /* Highlight on hover */
+  border-color: #adb5bd;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
 }
 
-
 .text-element.editing {
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(0, 105, 217, 0.1); /* Subtle highlight for editing */
+  border-color: #0069d9;
+  box-shadow: 0 0 10px rgba(0, 105, 217, 0.3);
+}
+
+/* Responsiveness and User-Friendly Tweaks */
+@media (max-width: 768px) {
+  .toolbar {
+    justify-content: center;
+  }
+
+  .toolbar button {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+
+  .text-element {
+    min-width: 120px; /* Reduced width for smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .toolbar input,
+  .toolbar select {
+    width: 100%; /* Full width for small screens */
+  }
 }

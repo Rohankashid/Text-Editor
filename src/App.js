@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import "./styles.css";
 
 function App() {
@@ -18,7 +18,13 @@ function App() {
       width: 200,
       height: 30,
       textHistory: [
-        { text: "Double-click to edit", fontSize: 16, fontFamily: "Arial", fontStyle: "normal", fontWeight: "normal" }
+        { 
+          text: "Double-click to edit", 
+          fontSize: 16, 
+          fontFamily: "Arial", 
+          fontStyle: "normal", 
+          fontWeight: "normal" 
+        }
       ],
       historyIndex: 0,
     };
@@ -44,12 +50,10 @@ function App() {
     const textElement = e.target;
     const newText = textElement.innerText;
 
-    // Preserve cursor position
     const selection = window.getSelection();
     const range = selection.getRangeAt(0);
     const cursorOffset = range.startOffset;
 
-    // Update state in the background
     setElements((prevElements) =>
       prevElements.map((el) => {
         if (el.id === id) {
@@ -74,7 +78,6 @@ function App() {
       })
     );
 
-    // Restore cursor position using requestAnimationFrame
     window.requestAnimationFrame(() => {
       const textNode = textElement.firstChild;
       if (textNode) {

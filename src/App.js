@@ -140,13 +140,13 @@ function App() {
     <div className="editor">
       <div className="toolbar">
         <button onClick={addTextElement}>Add Text</button>
-        <button onClick={undo} disabled={!selectedElement}>Undo</button>
-        <button onClick={redo} disabled={!selectedElement}>Redo</button>
+        <button onClick={undo}>Undo</button>
+        <button onClick={redo}>Redo</button>
         <label>
           Font Size:
           <input
             type="number"
-            disabled={!selectedElement}
+           // disabled={!selectedElement}
             value={
               selectedElement
                 ? elements.find((el) => el.id === selectedElement)?.fontSize || 16
@@ -163,7 +163,7 @@ function App() {
         <label>
           Font Style:
           <select
-            disabled={!selectedElement}
+           // disabled={!selectedElement}
             value={
               selectedElement
                 ? elements.find((el) => el.id === selectedElement)?.fontStyle || "normal"
@@ -181,7 +181,7 @@ function App() {
         <label>
           Font Weight:
           <select
-            disabled={!selectedElement}
+        //    disabled={!selectedElement}
             value={
               selectedElement
                 ? elements.find((el) => el.id === selectedElement)?.fontWeight || "normal"
@@ -199,27 +199,23 @@ function App() {
         <label>
           Font Family:
           <select
-            disabled={!selectedElement}
-            value={
-              selectedElement
-                ? elements.find((el) => el.id === selectedElement)?.fontFamily || "Arial"
-                : ""
-            }
-            onChange={(e) =>
-              selectedElement &&
-              updateElement(selectedElement, { fontFamily: e.target.value })
-            }
-          >
-            <option value="Arial">Arial</option>
-            <option value="Times New Roman">Times New Roman</option>
-            <option value="Georgia">Georgia</option>
-            <option value="Courier New">Courier New</option>
-            <option value="Verdana">Verdana</option>
-            <option value="Tahoma">Tahoma</option>
-            <option value="Comic Sans MS">Comic Sans MS</option>
-            <option value="Cursive">Cursive</option>
-            <option value="Monospace">Monospace</option>
-          </select>
+  value={selectedElement ? elements.find((el) => el.id === selectedElement)?.fontFamily || "Arial" : ""}
+  onChange={(e) =>
+    selectedElement &&
+    updateElement(selectedElement, { fontFamily: e.target.value })
+  }
+>
+  <option value="Arial">Arial</option>
+  <option value="Times New Roman">Times New Roman</option>
+  <option value="Georgia">Georgia</option>
+  <option value="Courier New">Courier New</option>
+  <option value="Verdana">Verdana</option>
+  <option value="Tahoma">Tahoma</option>
+  <option value="Comic Sans MS">Comic Sans MS</option>
+  <option value="Cursive">Cursive</option>
+  <option value="Monospace">Monospace</option>
+</select>
+
         </label>
       </div>
       <div className="canvas">
